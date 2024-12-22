@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ClerkProvider } from '@clerk/nextjs';
+import { Urbanist } from "next/font/google";
 
-import { ModalProvider } from "@/providers/modal-provider";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+import ModalProvider from "@/providers/modal-provider";
 import { ToasterProvider } from "@/providers/toast-provider";
 
-import "./globals.css";
-import prismadb from "@/lib/prismadb";
-import { ThemeProvider } from "@/providers/theam-provider";
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Urbanist({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Admin Dashboard',
-  description: 'Admin Dashboard'
+  title: 'Store',
+  description: 'Store'
 };
 
 export default function RootLayout({
@@ -21,18 +20,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  prismadb
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <ToasterProvider />
-            <ModalProvider />
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={font.className}>
+        <ModalProvider />
+        <ToasterProvider />
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
+    </html>
   );
 }

@@ -1,14 +1,14 @@
-"use client"
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { StoreModal } from "@/components/modals/store-modal";
+import PreviewModal from '@/components/preview-modal';
 
-export const ModalProvider = () => {
-    const [isMounted, setIsMounted] = useState(false)
+const ModalProvider = () => {
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true);
+        setIsMounted(true)
     }, []);
 
     if (!isMounted) {
@@ -16,8 +16,11 @@ export const ModalProvider = () => {
     }
 
     return (
-        <>
-            <StoreModal />
-        </>
-    )
+      <>
+        <PreviewModal />
+      </>
+    );
 }
+
+
+export default ModalProvider;
